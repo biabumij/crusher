@@ -1,4 +1,4 @@
-    <script type="text/javascript">
+<script type="text/javascript">
         var form_control = '';
     </script>
     <script type="text/javascript">
@@ -57,9 +57,6 @@
             },
             {
                 "data": "volume"
-            },
-            {
-                "data": "total"
             },
             {
                 "data": "notes"
