@@ -1182,7 +1182,6 @@ class Productions extends Secure_Controller {
 		$total = 0;
 		$total_volume = 0;
 		$total_dpp = 0;
-		$total_ppn = 0;
 		$date = $this->input->post('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -1190,7 +1189,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(psod.qty) as qty, SUM(psod.total) as dpp, SUM(psod.tax) as tax, (pso.total) as jumlah');
+		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(psod.qty) as qty, SUM(psod.total) as dpp, (pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -1242,12 +1241,11 @@ class Productions extends Secure_Controller {
 					}
 					$sups['mats'] = $mats;
 					$total += $sups['jumlah'];
+					$total_volume += $sups['qty'];
 					$total_dpp += $sups['dpp'];
-					$total_ppn += $sups['tax'];
 					$sups['no'] =$no;
 					$sups['qty'] = number_format($sups['qty'],2,',','.');
 					$sups['dpp'] = number_format($sups['dpp'],0,',','.');
-					$sups['tax'] = number_format($sups['tax'],0,',','.');
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
@@ -1261,7 +1259,6 @@ class Productions extends Secure_Controller {
 
 		echo json_encode(array('data'=>$data,
 		'total_dpp'=>number_format($total_dpp,0,',','.'),
-		'total_ppn'=>number_format($total_ppn,0,',','.'),
 		'total'=>number_format($total,0,',','.')
 	));	
 	}
@@ -1356,13 +1353,14 @@ class Productions extends Secure_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$total_dpp = 0;
 		$date = $this->input->post('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, SUM(ppd.total) as jumlah, SUM(ppd.tax) as ppn,  SUM(ppd.total + ppd.tax) as total_price');
+		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, SUM(ppd.qty) as qty, SUM(ppd.total) as dpp, SUM(ppp.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -1410,11 +1408,12 @@ class Productions extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_price'];
+					$total += $sups['jumlah'];
+					$total_dpp += $sups['dpp'];
 					$sups['no'] =$no;
-					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
+					$sups['qty'] = number_format($sups['qty'],2,',','.');
+					$sups['dpp'] = number_format($sups['dpp'],0,',','.');
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
-					$sups['ppn'] = number_format($sups['ppn'],0,',','.');
 					
 
 					$data[] = $sups;
@@ -1425,7 +1424,10 @@ class Productions extends Secure_Controller {
 			}
 		}
 
-		echo json_encode(array('data'=>$data,'total'=>number_format($total,0,',','.')));	
+		echo json_encode(array('data'=>$data,
+		'total_dpp'=>number_format($total_dpp,0,',','.'),
+		'total'=>number_format($total,0,',','.')
+	));	
 	}
 	
 	function table_date13()
