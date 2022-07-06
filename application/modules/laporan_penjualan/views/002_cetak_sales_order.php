@@ -1,195 +1,259 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>LAPORAN SALES ORDER</title>
-	  
-	  <?php
-		$search = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-		);
-		
-		$replace = array(
-		'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
-		
-		$subject = "$filter_date";
-
-		echo str_replace($search, $replace, $subject);
-
-	  ?>
+	  <?= include 'lib.php'; ?>
+	  <title>ORDER PENJUALAN</title>
 	  
 	  <style type="text/css">
-		table tr.table-judul{
-			background-color: #e69500;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
+	  	body{
+	  		font-family: "Open Sans", Arial, sans-serif;
+	  	}
+	  	table.minimalistBlack {
+		  border: 0px solid #000000;
+		  width: 100%;
+		  text-align: left;
 		}
-			
-		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 8px;
+		table.minimalistBlack td, table.minimalistBlack th {
+		  border: 1px solid #000000;
+		  padding: 5px 4px;
 		}
-
-		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
-			font-weight: bold;
+		table.minimalistBlack tr td {
+		  /*font-size: 13px;*/
+		  text-align:center;
 		}
-			
-		table tr.table-baris2{
-			font-size: 8px;
-			background-color: #E8E8E8;
+		table.minimalistBlack tr th {
+		  /*font-size: 14px;*/
+		  font-weight: bold;
+		  color: #000000;
+		  text-align: center;
+		  padding: 10px;
 		}
-
-		table tr.table-baris2-bold{
-			font-size: 8px;
-			background-color: #E8E8E8;
-			font-weight: bold;
+		table tr.table-active{
+            background-color: #b5b5b5;
+        }
+        table tr.table-active2{
+            background-color: #cac8c8;
+        }
+		table tr.table-active3{
+            background-color: #eee;
+        }
+		hr{
+			margin-top:0;
+			margin-bottom:30px;
 		}
-			
-		table tr.table-total{
-			background-color: #cccccc;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
+		h3{
+			margin-top:0;
 		}
 	  </style>
 
 	</head>
 	<body>
-		<table width="98%" cellpadding="15">
+		<table width="98%" border="0" cellpadding="3">
 			<tr>
-				<td width="100%" align="center">
-					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN SALES ORDER</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI STONE CRUSHER</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
+				<td align="center">
+					<div style="display: block;font-weight: bold;font-size: 16px;">ORDER PENJUALAN</div>
 				</td>
 			</tr>
 		</table>
-		<table cellpadding="3" width="98%">
-			<tr class="table-judul">
-                <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
-                <th align="center" width="10%">PELANGGAN</th>
-				<th align="center" width="23%" rowspan="2">&nbsp; <br />NO. KONTRAK</th>
-                <th align="center" width="12%" rowspan="2">&nbsp; <br />PRODUK</th>
-                <th align="center" width="5%" rowspan="2">&nbsp; <br />SATUAN</th>
-				<th align="center" width="8%" rowspan="2">&nbsp; <br />VOLUME</th>
-				<th align="center" width="9%" rowspan="2">&nbsp; <br />HARGA SATUAN</th>
-				<th align="center" width="9%" rowspan="2">&nbsp; <br />DPP</th>
-				<th align="center" width="9%" rowspan="2">&nbsp; <br />PPN</th>
-				<th align="center" width="10%" rowspan="2">&nbsp; <br />JUMLAH</th>
-            </tr>
-			<tr class="table-judul">
-				<th align="center">TGL. KONTRAK</th>
+		<br /><br />
+		<table width="98%" border="0" cellpadding="3">
+		    <tr>
+				<th width="20%">Nama Pelanggan</th>
+				<th width="2%">:</th>
+				<th width="50%" align="left"><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');?></th>
+				<td align="left" width="28%">
+					Jakarta, <?= convertDateDBtoIndo($row["contract_date"]); ?>
+				</td>
 			</tr>
-            <?php   
-            if(!empty($data)){
-            	foreach ($data as $key => $row) {
-            		?>
-            		<tr class="table-baris1-bold">
-            			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="10"><?php echo $row['nama'];?></td>
-            		</tr>
-            		<?php
-            		foreach ($row['mats'] as $mat) {
-            			?>
-            			<tr class="table-baris1">
-	            			<td align="center"></td>
-							<td align="center"><?php echo $mat['contract_date'];?></td>
-							<td align="left"><?php echo $mat['contract_number'];?></td>
-							<td align="center"><?php echo $mat['nama_produk'];?></td>
-	            			<td align="center"><?php echo $mat['measure'];?></td>
-	            			<td align="right"><?php echo $mat['qty'];?></td>
-							<td align="right"><?php echo $mat['price'];?></td>
-	            			<td align="right"><?php echo $mat['dpp'];?></td>
-							<td align="right"><?php echo $mat['tax'];?></td>
-							<td align="right"><?php echo $mat['total'];?></td>
-	            		</tr>		
-            			<?php
-					}
-					?>
-					<tr class="table-baris2-bold">
-            			<td align="right" colspan="9">JUMLAH</td>
-						<td align="right"><?php echo $row['jumlah'];?></td>
-            		</tr>	
-				<?php		
-            	}
-            }else {
-            	?>
-            	<tr>
-            		<td width="100%" colspan="10" align="center">NO DATA</td>
-            	</tr>
-            	<?php
+			<tr>
+				<th width="20%">Nomor Kontrak</th>
+				<th width="2%">:</th>
+				<th width="50%" align="left"><?php echo $row['contract_number'];?></th>
+			</tr>
+			<tr>
+				<th>Tanggal Kontrak</th>
+				<th width="10px">:</th>
+				<th align="left"><?= convertDateDBtoIndo($row["contract_date"]); ?></th>
+			</tr>
+			<tr>
+				<th>Jenis Pekerjaan</th>
+				<th width="10px">:</th>
+				<th align="left"><?php echo $row['jobs_type'];?></th>
+			</tr>
+			<tr>
+				<td width="72%"></td>
+				<th width="28%" align="left"><b>Kepada Yth :</b></th>
+			</tr>
+			<tr>
+				<td width="72%"></td>
+				<th width="28%" align="left"><b><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');?></b></th>
+			</tr>
+			<tr>
+				<td width="72%"></td>
+				<th width="28%" align="left"><?php echo $row['client_address'];?></th>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<table class="minimalistBlack" cellpadding="5" width="98%">
+			<tr class="table-active">
+                <th width="5%">No</th>
+                <th width="25%">Produk</th>
+                <th width="10%">Volume</th>
+                <th width="10%">Satuan</th>
+                <th width="15%">Harga Satuan</th>
+                <th width="15%">Pajak</th>
+                <th width="20%">Nilai</th>
+            </tr>
+            <?php
+           	$no=1;
+           	$subtotal = 0;
+            $tax_pph = 0;
+            $tax_ppn = 0;
+			$tax_ppn11 = 0;
+            $tax_0 = false;
+            $total = 0;
+           	foreach ($data as $dt) {
+               ?>  
+               <tr>
+                   <td align="center"><?php echo $no;?></td>
+                   <td align="center"><?= $dt["nama_produk"] ?></td>
+	               <td align="center"><?= $dt["qty"]; ?></td>
+	               <td align="center"><?= $dt["measure"]; ?></td>
+	               <td align="right"><?= number_format($dt['price'],0,',','.'); ?></td>
+	               <td align="right"><?= number_format($dt['tax'],0,',','.'); ?></td>
+	               <td align="right"><?= number_format($dt['total'],0,',','.'); ?></td>
+               </tr>
+               <?php
+               $no++;
+               $subtotal += $dt['total'];
+                if($dt['tax_id'] == 4){
+                    $tax_0 = true;
+                }
+                if($dt['tax_id'] == 3){
+                    $tax_ppn += $dt['tax'];
+                }
+                if($dt['tax_id'] == 5){
+                    $tax_pph += $dt['tax'];
+                }
+				if($dt['tax_id'] == 6){
+					$tax_ppn11 += $dt['tax'];
+				}
+               // $total += $subtotal;
+           	}
+           	?>
+            <tr>
+               <th colspan="6" style="text-align:right">Sub Total</th>
+               <th align="right"><?= number_format($subtotal,0,',','.'); ?></th>
+            </tr>
+            <?php
+            if($tax_ppn > 0){
+                ?>
+                <tr>
+                    <th colspan="6" align="right">Pajak (PPN 10%)</th>
+                    <th  align="right"><?= number_format($tax_ppn,0,',','.'); ?></th>
+                </tr>
+                <?php
             }
             ?>
-            <tr  class="table-total">
-            	<th align="right" colspan="9">TOTAL</th>
-            	<th align="right"><?php echo number_format($total,0,',','.');?></th>
-            </tr>		
+            <?php
+            if($tax_0){
+                ?>
+                <tr>
+                    <th colspan="6" align="right">Pajak (PPN 0%)</th>
+                    <th  align="right"><?= number_format(0,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+            ?>
+            <?php
+            if($tax_pph > 0){
+                ?>
+                <tr>
+                    <th colspan="6" align="right">Pajak (PPh 23)</th>
+                    <th align="right"><?= number_format($tax_pph,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+			?>
+			<?php
+            if($tax_ppn11 > 0){
+                ?>
+                <tr>
+                    <th colspan="6" align="right">Pajak (PPN 11%)</th>
+                    <th align="right"><?= number_format($tax_ppn11,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+			
+            $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
+            ?>
+            
+            <tr>
+                <th colspan="6" align="right">TOTAL</th>
+                <th align="right"><?= number_format($total,0,',','.'); ?></th>
+            </tr>
+           	
 		</table>
-		<table width="98%" border="0" cellpadding="15">
+		<br />
+	    <p><b>Memo</b></p>
+		<p><?= $row["memo"] ?></p>
+		<br />
+		<br />
+		<br />
+		<br />
+		<table width="98%" border="0" cellpadding="0">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
+					<table width="98%" border="1" cellpadding="2">
+						<tr class="table-active3">
 							<td align="center" >
-								Diperiksa Oleh
+								PENERIMA ORDER
 							</td>
 							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center" >
-								Dibuat Oleh
+							    PEMBERI ORDER
 							</td>
 						</tr>
-						<tr>
-							<td align="center" height="40px">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
-								Ka. Logistik</b>
-							</td>
-								<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
-								Ka. Plant</b>
+						<tr class="table-active3">
+							<td align="center" >
+								<b><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');?></b>
 							</td>
 							<td align="center" >
-								<b><br />
-								Admin Logistik</b>
+								<b>PT BIA BUMI JAYENDRA</b>
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="75px">
+								
+							</td>
+							<td align="center">
+								<!-- <img src="/uploads/ttd_annisa.jpeg" width="100px"> -->
+							</td>
+						</tr>
+						<?php
+                		    $logistik = $this->pmm_model->GetNameGroup(6);
+                		?>
+						<tr class="table-active3">
+							<td align="center">
+							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?>	
+							</td>
+							<td align="center">
+								<?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?>
+							</td>
+						</tr>
+						<tr class="table-active3">
+						     <?php
+                                $this->db->select('g.admin_group_name');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$row['created_by']);
+                                $created_group = $this->db->get('tbl_admin a')->row_array();
+                                ?>
+							<td align="center">
+							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>	
+							</td>
+							<td align="center">
+								<?= $created_group['admin_group_name']?>
 							</td>
 						</tr>
 					</table>
@@ -197,5 +261,6 @@
 				<td width="5%"></td>
 			</tr>
 		</table>
+
 	</body>
 </html>
