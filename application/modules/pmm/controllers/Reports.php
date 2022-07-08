@@ -5359,12 +5359,9 @@ class Reports extends CI_Controller {
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			$tangki_solar = $tangki_solar_biaya['total'] + $tangki_solar_jurnal['total'];
+			$tangki_solar = $tangki_solar_biaya['total'] + $tangki_solar_jurnal['total'];		
 			
-			$bbm_solar = $akumulasi_nilai_bahan_baku_2;
-			
-			
-			$total_biaya_peralatan = $stone_crusher + $whell_loader + $excavator['price'] + $genset + $timbangan + $tangki_solar + $bbm_solar;
+			$total_biaya_peralatan = $stone_crusher + $whell_loader + $excavator['price'] + $genset + $timbangan + $tangki_solar;
 			$hpp_peralatan = ($total_abu_batu!=0)?($total_biaya_peralatan / $total_abu_batu)  * 1:0;
 			
 			$gaji_upah_biaya = $this->db->select('sum(pdb.jumlah) as total')
@@ -5544,6 +5541,25 @@ class Reports extends CI_Controller {
 	            <th class="text-center"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
 			</tr>
+			<tr class="table-active3">
+				<th></th>
+	            <th>
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="5%">
+									<span>&nbsp;</span>
+								</th>
+								<th align="left" width="95%">
+									<span>Total Pemakaian BBM Solar</span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-center">Liter</th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_solar,0,',','.');?></th>
+	            <th class="text-center"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
+			</tr>
 			<tr class="table-active">
 	            <th class="text-center">2.</th>
 				<th class="text-left" colspan="5">Peralatan</th>
@@ -5661,25 +5677,6 @@ class Reports extends CI_Controller {
 				<th></th>
 	            <th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($tangki_solar,0,',','.');?></th>
-			</tr>
-			<tr class="table-active3">
-				<th></th>
-	            <th>
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th align="left" width="5%">
-									<span>&nbsp;</span>
-								</th>
-								<th align="left" width="95%">
-									<span>BBM Solar</span>
-								</th>
-							</tr>
-					</table>
-				</th>
-				<th class="text-center">Litter</th>
-				<th></th>
-	            <th class="text-center"></th>
-				<th class="text-right"><?php echo number_format($bbm_solar,0,',','.');?></th>
 			</tr>
 			<tr class="table-active5">
 				<th></th>
