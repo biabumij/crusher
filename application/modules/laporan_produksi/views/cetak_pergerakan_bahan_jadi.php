@@ -610,126 +610,82 @@
 			$tanggal_awal = date('2020-01-01');
 			$tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 
-			$produksi_harian_bulan_lalu = $this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d')
-			->from('pmm_produksi_harian pph ')
-			->join('pmm_produksi_harian_detail pphd','pphd.produksi_harian_id = pph.id','left')
-			->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left')
-			->where("(pph.date_prod between '$tanggal_awal' and '$tanggal_opening_balance')")
-			->where("pph.status = 'PUBLISH'")
+			$stock_opname_abu_batu_ago = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 7")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 			
-			//file_put_contents("D:\\produksi_harian_bulan_lalu.txt", $this->db->last_query());
+			$stock_opname_batu0510_ago = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 8")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
 
-			$volume_produksi_harian_abubatu_bulan_lalu = $produksi_harian_bulan_lalu['jumlah_pemakaian_a'];
-			$volume_produksi_harian_batu0510_bulan_lalu = $produksi_harian_bulan_lalu['jumlah_pemakaian_b'];
-			$volume_produksi_harian_batu1020_bulan_lalu = $produksi_harian_bulan_lalu['jumlah_pemakaian_c'];
-			$volume_produksi_harian_batu2030_bulan_lalu = $produksi_harian_bulan_lalu['jumlah_pemakaian_d'];
+			$stock_opname_batu1020_ago = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 3")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
 
-			$penjualan_abubatu_bulan_lalu = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
-			->join('produk p', 'pp.product_id = p.id','left')
-			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
-			->where("pp.product_id = 7")
-			->where("po.status in ('OPEN','CLOSED')")
-			->where("pp.status = 'PUBLISH'")
-			->group_by('pp.product_id')
+			$stock_opname_batu2030_ago = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 4")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
+
+			$stock_opname_abu_batu_ago_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 7")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 			
-			//file_put_contents("D:\\penjualan_abubatu_bulan_lalu.txt", $this->db->last_query());
-
-			$volume_penjualan_abubatu_bulan_lalu = $penjualan_abubatu_bulan_lalu['volume'];
-
-			$penjualan_batu0510_bulan_lalu = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
-			->join('produk p', 'pp.product_id = p.id','left')
-			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
-			->where("pp.product_id = 8")
-			->where("po.status in ('OPEN','CLOSED')")
-			->where("pp.status = 'PUBLISH'")
-			->group_by('pp.product_id')
+			$stock_opname_batu0510_ago_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 8")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\penjualan_batu0510_bulan_lalu.txt", $this->db->last_query());
 
-			$volume_penjualan_batu0510_bulan_lalu = $penjualan_batu0510_bulan_lalu['volume'];
-
-			$penjualan_batu1020_bulan_lalu = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
-			->join('produk p', 'pp.product_id = p.id','left')
-			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
-			->where("pp.product_id = 3")
-			->where("po.status in ('OPEN','CLOSED')")
-			->where("pp.status = 'PUBLISH'")
-			->group_by('pp.product_id')
+			$stock_opname_batu1020_ago_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 3")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\penjualan_batu1020_bulan_lalu.txt", $this->db->last_query());
 
-			$volume_penjualan_batu1020_bulan_lalu = $penjualan_batu1020_bulan_lalu['volume'];
-
-			$penjualan_batu2030_bulan_lalu = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
-			->join('produk p', 'pp.product_id = p.id','left')
-			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
-			->where("pp.product_id = 4")
-			->where("po.status in ('OPEN','CLOSED')")
-			->where("pp.status = 'PUBLISH'")
-			->group_by('pp.product_id')
+			$stock_opname_batu2030_ago_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 4")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\penjualan_batu2030_bulan_lalu.txt", $this->db->last_query());
 
-			$volume_penjualan_batu2030_bulan_lalu = $penjualan_batu2030_bulan_lalu['volume'];
+			//file_put_contents("D:\\stock_opname_batu2030_ago_cat.txt", $this->db->last_query());
 
-			//AGREGAT BULAN LALU
-			$agregat_bulan_lalu = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai, (SUM(pp.display_volume) * pa.presentase_a) / 100 as volume_agregat_a, (SUM(pp.display_volume) * pa.presentase_b) / 100 as volume_agregat_b, (SUM(pp.display_volume) * pa.presentase_c) / 100 as volume_agregat_c, (SUM(pp.display_volume) * pa.presentase_d) / 100 as volume_agregat_d')
-			->from('pmm_productions pp')
-			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
-			->join('pmm_agregat pa', 'pp.komposisi_id = pa.id','left')
-			->join('produk p', 'pp.product_id = p.id','left')
-			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
-			->where("pp.product_id = 24")
-			->where("po.status in ('OPEN','CLOSED')")
-			->where("pp.status = 'PUBLISH'")
-			->group_by('pp.product_id')
-			->get()->row_array();
-			
-			//file_put_contents("D:\\agregat_bulan_lalu.txt", $this->db->last_query());
-
-			$volume_agregat_abubatu_bulan_lalu = $agregat_bulan_lalu['volume_agregat_a'];
-			$volume_agregat_batu0510_bulan_lalu = $agregat_bulan_lalu['volume_agregat_b'];
-			$volume_agregat_batu1020_bulan_lalu = $agregat_bulan_lalu['volume_agregat_c'];
-			$volume_agregat_batu2030_bulan_lalu = $agregat_bulan_lalu['volume_agregat_d'];
-
-			$agregat_bulan_lalu_2 = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai, (SUM(pp.display_volume) * pa.presentase_a) / 100 as volume_agregat_a, (SUM(pp.display_volume) * pa.presentase_b) / 100 as volume_agregat_b, (SUM(pp.display_volume) * pa.presentase_c) / 100 as volume_agregat_c, (SUM(pp.display_volume) * pa.presentase_d) / 100 as volume_agregat_d')
-			->from('pmm_productions pp')
-			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
-			->join('pmm_agregat pa', 'pp.komposisi_id = pa.id','left')
-			->join('produk p', 'pp.product_id = p.id','left')
-			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
-			->where("pp.product_id = 14")
-			->where("po.status in ('OPEN','CLOSED')")
-			->where("pp.status = 'PUBLISH'")
-			->group_by('pp.product_id')
-			->get()->row_array();
-			
-			//file_put_contents("D:\\agregat_bulan_lalu_2.txt", $this->db->last_query());
-
-			$volume_agregat_abubatu_bulan_lalu_2 = $agregat_bulan_lalu_2['volume_agregat_a'];
-			$volume_agregat_batu0510_bulan_lalu_2 = $agregat_bulan_lalu_2['volume_agregat_b'];
-			$volume_agregat_batu1020_bulan_lalu_2 = $agregat_bulan_lalu_2['volume_agregat_c'];
-			$volume_agregat_batu2030_bulan_lalu_2 = $agregat_bulan_lalu_2['volume_agregat_d'];
-			//END AGREGAT
-
-			//OPENING BALANCE
-			$volume_opening_balance_abubatu_bulan_lalu = $volume_produksi_harian_abubatu_bulan_lalu - $volume_penjualan_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu_2;
-			$volume_opening_balance_batu0510_bulan_lalu = $volume_produksi_harian_batu0510_bulan_lalu - $volume_penjualan_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu_2;
-			$volume_opening_balance_batu1020_bulan_lalu = $volume_produksi_harian_batu1020_bulan_lalu - $volume_penjualan_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu_2;
-			$volume_opening_balance_batu2030_bulan_lalu = $volume_produksi_harian_batu2030_bulan_lalu - $volume_penjualan_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu_2;
+			$volume_opening_balance_abubatu_bulan_lalu = $stock_opname_abu_batu_ago['volume'] + $stock_opname_abu_batu_ago_cat['volume'];
+			$volume_opening_balance_batu0510_bulan_lalu = $stock_opname_batu0510_ago['volume'] + $stock_opname_batu0510_ago_cat['volume'];
+			$volume_opening_balance_batu1020_bulan_lalu = $stock_opname_batu1020_ago['volume'] + $stock_opname_batu1020_ago_cat['volume'];
+			$volume_opening_balance_batu2030_bulan_lalu = $stock_opname_batu2030_ago['volume'] + $stock_opname_batu2030_ago_cat['volume'];
 
 			//RUMUS HARGA OPENING BALANCE
 
@@ -738,17 +694,26 @@
 			//SATU BULAN LALU
 			$tanggal_opening_balance_3 = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 			
+			$harga_hpp_2 = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp_2 pp')
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
+			->get()->row_array();
+			
+			//file_put_contents("D:\\harga_hpp_2.txt", $this->db->last_query());
+
 			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
 			->from('hpp pp')
-			->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
 			->get()->row_array();
 			
 			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
-			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
-			$harga_opening_balance_batu0510_bulan_lalu =  $harga_hpp['batu0510'];
-			$harga_opening_balance_batu1020_bulan_lalu =  $harga_hpp['batu1020'];
-			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp['batu2030'];
+			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp_2['abubatu'] + $harga_hpp['abubatu'];
+			$harga_opening_balance_batu0510_bulan_lalu = $harga_hpp_2['batu0510'] + $harga_hpp['batu0510'];
+			$harga_opening_balance_batu1020_bulan_lalu = $harga_hpp_2['batu1020'] + $harga_hpp['batu1020'];
+			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp_2['batu2030'] + $harga_hpp['batu2030'];
 
 			$vol_1 = round($volume_opening_balance_abubatu_bulan_lalu,2);
 			$vol_2 = round($volume_opening_balance_batu0510_bulan_lalu,2);
@@ -759,6 +724,7 @@
 			$nilai_opening_balance_batu0510_bulan_lalu = $vol_2 * $harga_opening_balance_batu0510_bulan_lalu;
 			$nilai_opening_balance_batu1020_bulan_lalu = $vol_3 * $harga_opening_balance_batu1020_bulan_lalu;
 			$nilai_opening_balance_batu2030_bulan_lalu = $vol_4 * $harga_opening_balance_batu2030_bulan_lalu;
+
 
 			?>
 
@@ -1008,10 +974,86 @@
 			$nilai_agregat_batu1020_bulan_ini_2 = $volume_agregat_batu1020_bulan_ini_2_fix * $harga_agregat_batu1020_bulan_ini_2;
 			$nilai_agregat_batu2030_bulan_ini_2 = $volume_agregat_batu2030_bulan_ini_2_fix * $harga_agregat_batu2030_bulan_ini_2;
 
-			$volume_akhir_agregat_abubatu_bulan_ini_2 = $volume_akhir_agregat_abubatu_bulan_ini - $volume_agregat_abubatu_bulan_ini_2;
-			$volume_akhir_agregat_batu0510_bulan_ini_2 = $volume_akhir_agregat_batu0510_bulan_ini - $volume_agregat_batu0510_bulan_ini_2;
-			$volume_akhir_agregat_batu1020_bulan_ini_2 = $volume_akhir_agregat_batu1020_bulan_ini - $volume_agregat_batu1020_bulan_ini_2;
-			$volume_akhir_agregat_batu2030_bulan_ini_2 = $volume_akhir_agregat_batu2030_bulan_ini - $volume_agregat_batu2030_bulan_ini_2;
+			$stock_opname_abu_batu = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 7")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+			
+			$stock_opname_batu0510 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 8")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu1020 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 3")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu2030 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 4")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
+
+			$stock_opname_abu_batu_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 7")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+			
+			$stock_opname_batu0510_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 8")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu1020_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 3")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu2030_cat = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 4")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
+
+			$volume_akhir_agregat_abubatu_bulan_ini_2 = $stock_opname_abu_batu['volume'] + $stock_opname_abu_batu_cat['volume'];
+			$volume_akhir_agregat_batu0510_bulan_ini_2 = $stock_opname_batu0510['volume'] + $stock_opname_batu0510_cat['volume'];
+			$volume_akhir_agregat_batu1020_bulan_ini_2 = $stock_opname_batu1020['volume'] + $stock_opname_batu1020_cat['volume'];
+			$volume_akhir_agregat_batu2030_bulan_ini_2 = $stock_opname_batu2030['volume'] + $stock_opname_batu2030_cat['volume'];
 
 			$harga_akhir_agregat_abubatu_bulan_ini_2 = $harga_agregat_abubatu_bulan_ini_2;
 			$harga_akhir_agregat_batu0510_bulan_ini_2 = $harga_agregat_batu0510_bulan_ini_2;
