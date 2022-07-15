@@ -180,15 +180,15 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
+								<b><u>Gervasius K. Hekin</u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
-								<b><u>Rifka Dian B.</u><br />
+								<b><u></u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u>Dian Melinda S.</u><br />
+								<b><u></u><br />
 								Staff Keuangan & SDM</b>
 							</td>
 						</tr>

@@ -313,7 +313,7 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b><u>Hadi Sucipto</u>
+								<b><u>Gervasius K. Hekin</u>
 								Ka. Plant</b>
 							</td>
 							<td align="center" >

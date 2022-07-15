@@ -832,7 +832,7 @@
 					</tr>
 					<tr>
 						<td align="left">
-							Nama : Hadi Sucipto<br />
+							Nama : Gervasius K. Hekin<br />
 							<b>Jabatan : Ka. Plant</b>
 						</td>
 						<td align="left">
@@ -844,7 +844,7 @@
 							<b>Jabatan : Ka. Produksi</b>
 						</td>
 						<td align="left" >
-							Nama : Vicky Irwana Yudha<br />
+							Nama : <br />
 							<b>Jabatan : Ka. Logistik</b>
 						</td>
 					</tr>
