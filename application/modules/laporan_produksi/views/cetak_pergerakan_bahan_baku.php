@@ -405,7 +405,7 @@
 							Ka. Produksi</b>
 						</td>
 						<td align="center" >
-							<b><u>Vicky Irwana Yudha</u><br />
+							<b><u>Gervasius K. Hekin</u><br />
 							Ka. Logistik</b>
 						</td>
 					</tr>
