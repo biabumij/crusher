@@ -118,10 +118,6 @@
            	?>
 
 		</table>
-
-		<?php
-		//$direksi = $this->pmm_model->GetNameGroup(6);
-		?>
 		<br />
 		<br />
 		<p><b>B. Persyaratan Harga</b></p>
@@ -133,7 +129,7 @@
 				</td>
             </tr>
             <tr>
-            	<th><b>PT BIA BUMI JAYENDRA</b></th>
+            	<th><b></b></th>
             </tr>
             <tr>
 				<th height="50px">
@@ -142,14 +138,12 @@
             </tr>
             <tr>
 				<th>
-					<!-- <b><?=  $direksi['admin_name'];?></b> -->
-					<b>Hadi Sucipto</b>
+					<b></b>
 					
 				</th>
             </tr>
             <tr>
             	<td>
-					<!-- <?=  $direksi['admin_group_name'];?> -->
 					Ka. Plant
 				</td>
             </tr>

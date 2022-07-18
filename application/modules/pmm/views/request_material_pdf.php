@@ -136,13 +136,13 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								Hadi Sucipto
+								
 							</td>
 							<td align="center" >
-								Vicky Irwana Yudha
+								
 							</td>
 							<td align="center" >
-								Mohammad Rasyid
+								
 							</td>
 						</tr>
 						<tr class="table-active">

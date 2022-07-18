@@ -210,11 +210,6 @@
 		</table>
 		<br />
 		<br />
-		<?php
-        $kepala_divisi = $this->pmm_model->GetNameGroup(15);
-		$kepala_logistik = $this->pmm_model->GetNameGroup(11);
-        $staff_keuangan_pusat = $this->pmm_model->GetNameGroup(13);
-        ?>  
         <table width="98%" border="0" cellpadding="0">
             <tr>
                 <td width="100%">
@@ -242,16 +237,16 @@
                         </tr>
                         <tr class="table-active3">
                             <td align="center">
-                                <?= $row['verifikator'];?>
+                                
                             </td>
                             <td align="center">
-                                <?=  $kepala_logistik['admin_name'];?>
+                                
                             </td>
                             <td align="center">
-                                 <?=  $kepala_divisi['admin_name'];?> 
+                                 
                             </td>
                             <td align="center">
-                                <?=  $staff_keuangan_pusat['admin_name'];?>
+                                
                             </td>
                         </tr>
                         <tr class="table-active3">

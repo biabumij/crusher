@@ -70,12 +70,7 @@
         <br />
         <br />
         <br />
-        <br />
-        <?php
-        $staff_keuangan_pusat = $this->pmm_model->GetNameGroup(9);
-        $manager_keuangan = $this->pmm_model->GetNameGroup(5);
-        $direksi = $this->pmm_model->GetNameGroup(6);
-        ?>  
+        <br /> 
         <table width="98%" border="0" cellpadding="0">
             <tr >
                 <td width="5%"></td>
@@ -105,24 +100,24 @@
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
-                                <?= $staff_keuangan_pusat['admin_name'];?>
+                                
                             </td>
                             <td align="center" >
-                                <?= $manager_keuangan['admin_name'];?>
+                                
                             </td>
                             <td align="center" >
-                                <?= $direksi['admin_name'];?>
+                                
                             </td>
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
-                                <b><?= $staff_keuangan_pusat['admin_group_name'];?></b>
+                                <b></b>
                             </td>
                             <td align="center" >
-                                <b><?= $manager_keuangan['admin_group_name'];?></b>
+                                <b></b>
                             </td>
                             <td align="center" >
-                                <b><?= $direksi['admin_group_name'];?></b>
+                                <b></b>
                             </td>
                         </tr>
                     </table>

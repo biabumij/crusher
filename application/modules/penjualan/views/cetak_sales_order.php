@@ -220,7 +220,7 @@
 								<b><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');?></b>
 							</td>
 							<td align="center" >
-								<b>PT BIA BUMI JAYENDRA</b>
+								<b></b>
 							</td>
 						</tr>
 						<tr class="">
@@ -231,15 +231,12 @@
 								
 							</td>
 						</tr>
-						<?php
-                		    $logistik = $this->pmm_model->GetNameGroup(6);
-                		?>
 						<tr class="table-active3">
 							<td align="center">
 							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?>	
 							</td>
 							<td align="center">
-								<?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?>
+			
 							</td>
 						</tr>
 						<tr class="table-active3">
@@ -253,7 +250,7 @@
 							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>	
 							</td>
 							<td align="center">
-								<?= $created_group['admin_group_name']?>
+								
 							</td>
 						</tr>
 					</table>

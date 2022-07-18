@@ -193,9 +193,6 @@
 		<br />
 		<br />
 		<br />
-		<?php
-        $ka_plant = $this->pmm_model->GetNameGroup(15);
-        ?> 
 		<table width="98%" border="0" cellpadding="0">
 			<tr >
 				<td width="5%"></td>
@@ -206,7 +203,7 @@
 								<b><?php echo $row['supplier_name'];?></b>
 							</td>
 							<td align="center" >
-								<b>PT BIA BUMI JAYENDRA</b>
+								<b></b>
 							</td>
 						</tr>
 						<tr class="table-active3">
@@ -226,12 +223,12 @@
 							</td>
 						</tr>
 						<tr class="table-active3">
-							<td align="center"><?php echo $row['pic'];?></td>
-							<td align="center"><?= $ka_plant['admin_name'];?></td>
+							<td align="center"></td>
+							<td align="center"></td>
 						</tr>
 						<tr class="table-active3">
 							<td align="center" >
-								<b><?php echo $row['position'];?></b>
+								<b></b>
 							</td>
 							<td align="center" >
 								<b>Ka. Plant</b>
