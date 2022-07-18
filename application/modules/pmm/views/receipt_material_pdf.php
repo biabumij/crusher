@@ -202,10 +202,10 @@
 						</tr>
 						<tr class="table-active3">
 							<td align="center" >
-								Dadang Rosyid. R
+								
 							</td>
 							<td align="center" >
-								Annisa Putri
+								
 							</td>
 						</tr>
 						<tr class="table-active3">

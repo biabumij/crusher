@@ -832,7 +832,7 @@
 					</tr>
 					<tr>
 						<td align="left">
-							Nama : Gervasius K. Hekin<br />
+							Nama : <br />
 							<b>Jabatan : Ka. Plant</b>
 						</td>
 						<td align="left">

@@ -206,7 +206,7 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Gervasius K. Hekin</u><br />
+								<b><u></u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center">

@@ -154,7 +154,7 @@
 								Ka. Plant</b>
 							</td>
                             <td align="center" >
-								<b><u>Annisa Putri</u><br />
+								<b><u></u><br />
 								Dir. Produksi & Pengembangan</b>
 							</td>
 						</tr>

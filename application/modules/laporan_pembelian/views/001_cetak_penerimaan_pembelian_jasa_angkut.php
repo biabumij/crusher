@@ -220,12 +220,12 @@
 								 Ka. Logistik</b>
 							</td>
 							<td align="center">
-								<b><u>Gervasius K. Hekin</u><br />
+								<b><u></u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center">
-								<b><u>Annisa Putri</u><br />
-								Dir. Produksi & Pengembangan</b>
+								<b><u></u><br />
+								Dir. Produksi, HSE & Sistem</b>
 							</td>
 						</tr>
 					</table>

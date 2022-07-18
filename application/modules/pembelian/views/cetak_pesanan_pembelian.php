@@ -222,7 +222,7 @@
 								
 							</td>
 							<td align="center">
-								<!-- <img src="/uploads/ttd_annisa.jpeg" width="100px"> -->
+								
 							</td>
 						</tr>
 						<tr class="table-active3">

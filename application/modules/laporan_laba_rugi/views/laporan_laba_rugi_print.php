@@ -478,15 +478,15 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Deddy Sarwobiso</u><br />
+								<b><u></u><br />
 								Dir. Produksi, HSE & Sistem</b>
 							</td>
 							<td align="center">
-								<b><u>Endah Purnama S.</u><br />
+								<b><u></u><br />
 								Staff. Produksi & HSE</b>
 							</td>
 							<td align="center">
-							<b><u>Gervasius K. Hekin</u><br />
+							<b><u></u><br />
 								Ka. Plant</b>
 							</td>
 						</tr>

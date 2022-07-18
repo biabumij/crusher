@@ -157,15 +157,15 @@
 								Adm. Logistik</b>
 							</td>
 							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
+								<b><u></u><br />
 								Ka. Logistik</b>
 							</td>
 							<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
+								<b><u></u><br />
 								Ka. Plant</b>
 							</td>
                             <td align="center" >
-								<b><u>Annisa Putri</u><br />
+								<b><u></u><br />
 								Dir. Produksi & Pengembangan</b>
 							</td>
 						</tr>
