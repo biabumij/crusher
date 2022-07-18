@@ -221,7 +221,7 @@
 							</td>
 							<td align="center">
 								<b><u></u><br />
-								Ka. Plant</b>
+								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center">
 								<b><u></u><br />

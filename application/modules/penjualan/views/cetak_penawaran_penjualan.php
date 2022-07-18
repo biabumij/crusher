@@ -144,7 +144,7 @@
             </tr>
             <tr>
             	<td>
-					Ka. Plant
+					Ka. Unit Bisnis
 				</td>
             </tr>
 		</table>
