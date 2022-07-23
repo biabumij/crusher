@@ -67,7 +67,7 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">Pelanggan * </label>
                                                 <select id="client_id" name="client_id" class="form-control form-select2" required="">
-                                                    <option value="">Pilih Pelanggan</option>
+                                                    <option value=""></option>
                                                     <?php foreach ($clients as $client) : ?>
                                                         <option value="<?= $client['id'] ?>"><?= $client['nama'] ?></option>
                                                     <?php endforeach; ?>
@@ -78,7 +78,10 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">No. Sales Order * </label>
                                                 <select id="po_penjualan" name="po_penjualan" class="form-control form-select2" required="">
-                                                    
+                                                <option value=""></option>
+                                                    <?php foreach ($contract_number as $po) : ?>
+                                                        <option value="<?= $po['id'] ?>"><?= $po['contract_number'] ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -364,16 +367,10 @@
             $('#box-view').show();
         });
 
-        <?php
-        if (!empty($client_id)) {
-        ?>
-            $('document').ready(function() {
-                $('#client_id').val(<?= $client_id; ?>).trigger('change');
-            });
-
-        <?php
-        }
-        ?>
+        $(document).ready(function(){
+            $('#client_id').val(<?= $data['client_id'];?>).trigger('change');
+            $('#po_penjualan').val(<?= $data['id'];?>).trigger('change');
+        });
 
         $('.filterpicker').daterangepicker({
             autoUpdateInput: false,
@@ -494,8 +491,8 @@
                 success: function(result) {
                     $('#btn-form').button('reset');
                     if (result.output) {
-                       // $("#form-product").trigger("reset");
-                       $('#po_penjualan').val('').trigger('change');
+                        // $("#form-product").trigger("reset");
+                        $('#po_penjualan').val('').trigger('change');
                         $('#product_id').val('').trigger('change');
                         $('#client_id').val('').trigger('change');
                         $('#volume').val('');
@@ -573,7 +570,7 @@
                 if (result) {
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo site_url('pmm/productions/delete_retur'); ?>",
+                        url: "<?php echo site_url('pmm/productions/get_po_penjualan_retur'); ?>",
                         dataType: 'json',
                         data: {
                             id: id
@@ -601,14 +598,12 @@
                 },
                 success: function(result) {
                     if (result.output) {
-                        // $('#product_id').empty();
-                        // $('#product_id').select2({data:result.products});
-
                         $('#po_penjualan').empty();
                         $('#po_penjualan').select2({
                             data: result.po
                         });
-                        $('#po_penjualan').trigger('change');
+                        
+                        $('#po_penjualan').val(<?= $data['id'];?>).trigger('change');
                     } else if (result.err) {
                         bootbox.alert(result.err);
                     }
@@ -705,18 +700,6 @@
             $('#salesPo_id').val($('#po_penjualan').val()).trigger('change');
         });
 
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#po_penjualan').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		
-		$("#convert_value, #volume, #select_operation").change(function(){
-            
-            getTotalDisplay();
-        });
-
         $(document).ready(function() {
             setTimeout(function(){
                 $('#measure').prop('selectedIndex', 2).trigger('change');
@@ -727,6 +710,11 @@
             setTimeout(function(){
                 $('#convert_measure').prop('selectedIndex', 3).trigger('change');
             }, 1000);
+        });
+		
+		$("#convert_value, #volume, #select_operation").change(function(){
+            
+            getTotalDisplay();
         });
 		
 		function getTotalDisplay()
