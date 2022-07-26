@@ -64,7 +64,7 @@
                             <div id="alert-receipt-material" class="row">
                                 
                             </div>
-                            <form id="form-product" class="form-horizontal" action="<?php echo site_url('pmm/receipt_material/process'); ?>"  enctype="multipart/form-data" onSubmit="window.location.reload()">
+                            <form id="form-product" class="form-horizontal" action="<?php echo site_url('pmm/receipt_material/process'); ?>"  enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1000)">
                                 <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="">
                                 <input type="hidden" id="date_receipt_val" name="date_receipt_val" value="<?php echo date('d-m-Y');?>">
                                 <input type="hidden" name="receipt_material_id" id="receipt_material_id" value="">
@@ -88,7 +88,8 @@
                                             
                                         </select>
                                     </div>
-                                    </div>    
+                                    <input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
+                                </div>    
                                 <div class="row">
                                     <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Volume * </label>
@@ -553,7 +554,7 @@
                     if(result.data){
                         $('#purchase_order').empty();
                         $('#purchase_order').select2({data:result.data});
-                        $('#purchase_order').val(result.last_po).trigger('change');
+                        //$('#purchase_order').val(result.last_po).trigger('change');
                         $('#purchase_order').val(<?= $data['id'];?>).trigger('change');
                     }else if(result.err){
                         bootbox.alert(result.err);
@@ -579,16 +580,16 @@
                         $('#alert-receipt-material').html('');
                         var no_alert = 1;
                         $.each(result.data,function(key,val){
-                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'">'+val.text+'</option>');
+                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'" data-tax_id="'+val.tax_id+'">'+val.text+'</option>');
                             $('#filter_material').append('<option value="'+val.id+'" >'+val.text+'</option>');
 
                             if(key > 0){
                                 $('#alert-receipt-material').append('<div class="col-sm-3">'
-                                    +'<div class="alert alert-danger">'
+                                    +'<div class="alert alert-danger text-center">'
                                         +'<h5><strong>'+val.text+'</strong></h5>'
-                                        +'<b>PO : '+val.total_po+'  <br /></b>'
+                                        +'<div class="text-right"><b>PO : '+val.total_po+'  <br /></b>'
                                         +'<b>Penerimaan : '+val.receipt_material
-                                    +'</div></b>'
+                                    +'</div></div></b>'
                                 +'</div>');
                                 if(no_alert % 4 == 0){
                                     $('#alert-receipt-material').append('</div><div class="row">');
@@ -629,18 +630,13 @@
         });
 
         
-        // $('#material_id').change(function(){
-        //     var koef = $('option:selected', this).attr('data-koef');
-        //     $('#koef').val(koef);
-
-        // });
         $('#material_id').change(function(){
             var measure = $(this).find(':selected').data('measure');
             $('#measure_id').val(measure);
-            //var display_measure = $(this).find(':selected').data('display-measure');
-            //$('#display_measure').val(display_measure);
-            // $('#display_measure').attr("disabled", true);
+            var tax_id = $(this).find(':selected').data('tax_id');
+            $('#tax_id').val(tax_id);
         });
+
 
         $('#form-product').submit(function(event){
             $('#btn-form').button('loading');

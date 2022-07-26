@@ -133,7 +133,7 @@
             			<tr class="table-baris1">
 	            			<td align="center"></td>
 	            			<td align="left"><?php echo $mat['nama_produk'];?></td>
-	            			<td align="center"><?php echo $mat['measure_name'];?></td>
+	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['real'];?></td>
 							<td align="right">
 	            				<table cellpadding="0" width="100%" border="0">
@@ -237,11 +237,11 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u></u><br />
+								<b><u>Hadi Sucipto</u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center">
-								<b><u></u><br />
+								<b><u>Vicky Irwana Yudha</u><br />
 								Ka. Logistik</b>
 							</td>
 							<td align="center" >
