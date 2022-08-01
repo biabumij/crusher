@@ -830,7 +830,7 @@
 					</tr>
 					<tr>
 						<td align="center">
-							<b><u>Hadi Sucipto</u><br />
+							<b><u></u><br />
 							Ka. Unit Bisnis</b>
 						</td>
 						<td align="center">
@@ -842,7 +842,7 @@
 							Ka. Produksi</b>
 						</td>
 						<td align="center" >
-							<b><u>Vicky Irwana Yudha</u><br />
+							<b><u></u><br />
 							Ka. Logistik</b>
 						</td>
 					</tr>
