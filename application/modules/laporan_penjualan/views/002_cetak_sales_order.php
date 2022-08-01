@@ -121,7 +121,7 @@
 	            			<td align="center"></td>
 							<td align="center"><?php echo $mat['contract_date'];?></td>
 							<td align="left"><?php echo $mat['contract_number'];?></td>
-							<td align="center"><?php echo $mat['nama_produk'];?></td>
+							<td align="left"><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['qty'];?></td>
 							<td align="right"><?php echo $mat['price'];?></td>
@@ -180,11 +180,11 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u></u><br />
+								<b><u>Vicky Irwana Yudha</u><br />
 								Ka. Logistik</b>
 							</td>
 								<td align="center" >
-								<b><u></u><br />
+								<b><u>Hadi Sucipto</u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
