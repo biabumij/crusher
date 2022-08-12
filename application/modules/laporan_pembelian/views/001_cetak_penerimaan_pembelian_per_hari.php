@@ -102,7 +102,7 @@
                 <th align="center" width="15%" rowspan="2">&nbsp; <br />NILAI</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center" colspan="2">NO. PESANAN PEMBELIAN</th>
+				<th align="center">NO. PESANAN PEMBELIAN</th>
 				<th align="center">SATUAN</th>
 			</tr>
             <?php
@@ -213,11 +213,11 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
+								<b><u></u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
+								<b><u></u><br />
 								 Ka. Logistik</b>
 							</td>
 							<td align="center" >
