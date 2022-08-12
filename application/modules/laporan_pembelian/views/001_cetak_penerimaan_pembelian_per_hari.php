@@ -169,7 +169,7 @@
             }
             ?>	
             <tr class="table-total">
-				<th align="right" colspan="6">TOTAL</th>
+				<th align="right" colspan="5">TOTAL</th>
 				<th align="right"><?php echo number_format($total_vol,2,',','.');?></th>
 				<th align="right"></th>
             	<th align="right">
