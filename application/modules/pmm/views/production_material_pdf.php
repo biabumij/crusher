@@ -173,8 +173,8 @@
 								
 							</td>
 							<td align="center" >
-								<u><b>Agustinus Pakaenoni</b></u><br />
-								<b>Logistik</b>
+								<u><b></b></u><br />
+								<b>Ka. Logistik</b>
 							</td>
 						</tr>
 					</table>
