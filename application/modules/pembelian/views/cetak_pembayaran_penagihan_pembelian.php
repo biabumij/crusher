@@ -7,6 +7,9 @@
         body{
             font-family: "Open Sans", Arial, sans-serif;
         }
+        table tr.table-bold{
+           font-weight: bold;
+        }
       </style>
 
     </head>
@@ -68,15 +71,12 @@
         </table>
         <br />
         <br />
-        <br />
-        <br />
-        <br /> 
-        <table width="98%" border="0" cellpadding="0">
+        <table width="98%" border="0" cellpadding="30">
             <tr >
                 <td width="5%"></td>
                 <td width="90%">
                     <table width="100%" border="1" cellpadding="3">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center" >
                                 Dibuat Oleh
                             </td>
@@ -98,9 +98,9 @@
                                 
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="table-bold">
                             <td align="center" >
-                                
+                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
                             </td>
                             <td align="center" >
                                 
@@ -109,15 +109,21 @@
                                 
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="table-bold">
                             <td align="center" >
-                                <b></b>
+                            <?php
+                            $this->db->select('g.admin_group_name');
+                            $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                            $this->db->where('a.admin_id',$pembayaran['created_by']);
+                            $created_group = $this->db->get('tbl_admin a')->row_array();
+                            ?>
+                                <b><?= $created_group['admin_group_name']?></b>
                             </td>
                             <td align="center" >
-                                <b></b>
+                                <b>Dir. Keuangan</b>
                             </td>
                             <td align="center" >
-                                <b></b>
+                                <b>Direktur Utama</b>
                             </td>
                         </tr>
                     </table>
@@ -125,9 +131,5 @@
                 <td width="5%"></td>
             </tr>
         </table>
-
-            
-        
-
     </body>
 </html>
