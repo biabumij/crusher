@@ -41,8 +41,7 @@
             background-color: #cac8c8;
         }
         table tr.table-active3{
-            back
-            ground-color: #eee;
+            font-weight: bold;
         }
         hr{
             margin-top:0;
@@ -123,12 +122,12 @@
             <tr>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center">
                                 Dibuat Oleh
                             </td>
                             <td align="center">
-                                Diperiksa Oleh,
+                                Diperiksa Oleh
                             </td>
                             <?php
                             if(!empty($arr_no_trans)){
@@ -152,10 +151,9 @@
                             <td align="center" height="75px">
                                 
                             </td>
-                            
-                                    <td align="center">
-                                
-                                    </td>
+                            <td align="center">
+                        
+                            </td>
                             <?php
                             if(!empty($arr_no_trans)){
                                 if (strpos($arr_no_trans[2], 'SC') === false) {
@@ -208,9 +206,6 @@
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$biaya['created_by']);
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
-								//file_put_contents("D:\\cetakJurnal.txt", $this->db->last_query());
-
-
                                 ?>
                                 <?= $created_group['admin_group_name']?>
                             </td>
