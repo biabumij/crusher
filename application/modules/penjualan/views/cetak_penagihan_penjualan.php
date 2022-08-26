@@ -215,10 +215,7 @@
 		</table>
 		<br />
 		<br />
-		<br />
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -245,9 +242,6 @@
 								
 							</td>
 						</tr>
-						<?php
-                		    $logistik = $this->pmm_model->GetNameGroup(6);
-                		?>
 						<tr>
 							<td align="center" class="ttd">
 							    	
@@ -260,12 +254,12 @@
 							</td>
 						</tr>
 						<tr>
-						     <?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$penagihan['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                                ?>
+						    <?php
+							$this->db->select('g.admin_group_name');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$penagihan['created_by']);
+							$created_group = $this->db->get('tbl_admin a')->row_array();
+							?>
 							<td align="center">
 							    <b><?php echo $this->crud_global->GetField('penerima',array('id'=>$penagihan['client_id']),'nama');?></b>
 							</td>
