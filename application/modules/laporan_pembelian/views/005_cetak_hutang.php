@@ -103,7 +103,7 @@
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />HUTANG</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center">TGL. DITERIMA PROYEK</th>
+				<th align="center">TGL. INVOICE</th>
 			</tr>
             <?php   
             if(!empty($data)){
@@ -182,15 +182,15 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Hadi Sucipto</u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Rifka Dian B.</u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Dian Melinda S.</u><br />
 								Staff Keuangan & SDM</b>
 							</td>
 						</tr>
