@@ -84,8 +84,6 @@
 			<tr>
 				<td width="100%" align="center">
 					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN HUTANG</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI STONE CRUSHER</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
 				</td>
 			</tr>
@@ -96,14 +94,14 @@
 			<tr class="table-judul">
 				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
 				<th align="center" width="12%">REKANAN</th>
-				<th align="center" width="17%" rowspan="2">&nbsp; <br />NO. TAGIHAN</th>
-				<th align="center" width="30%" rowspan="2">&nbsp; <br />KETERANGAN</th>
+				<th align="center" width="30%" rowspan="2">&nbsp; <br />NO. TAGIHAN</th>
+				<th align="center" width="17%" rowspan="2">&nbsp; <br />KETERANGAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />TAGIHAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />HUTANG</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center">TGL. INVOICE</th>
+				<th align="center">TGL. DITERIMA PROYEK</th>
 			</tr>
             <?php   
             if(!empty($data)){
@@ -182,11 +180,11 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
+								<b><u></u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
-								<b><u>Rifka Dian B.</u><br />
+								<b><u></u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
