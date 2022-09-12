@@ -805,7 +805,7 @@ class Receipt_material extends CI_Controller {
         if(!empty($purchase_order_no)){
             $this->db->where('pod.purchase_order_id',$purchase_order_no);
         }
-	
+		
 		$this->db->join('penerima ps', 'ppo.supplier_id = ps.id');
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
@@ -1045,6 +1045,7 @@ class Receipt_material extends CI_Controller {
         }
 		
 		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id','left');
+		$this->db->where('ppp.status','BELUM LUNAS');
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
