@@ -155,7 +155,7 @@
 							</td>
                             <td align="center" >
 								<b><u></u><br />
-								Dir. Produksi & Pengembangan</b>
+								Dir. Pemasaran & Pengembangan</b>
 							</td>
 						</tr>
 					</table>
