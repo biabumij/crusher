@@ -139,6 +139,7 @@
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$volume_opening_balance = $stock_opname_batu_boulder_ago['volume'] + $stock_opname_batu_boulder_ago_2['volume'];
@@ -332,7 +333,7 @@
 					</tr>
 					<tr>
 						<td align="center">
-							<b><u>Hadi Sucipto</u><br />
+							<b><u></u><br />
 							Ka. Unit Bisnis</b>
 						</td>
 						<td align="center">
