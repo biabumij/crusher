@@ -99,7 +99,7 @@
 				<th align="center" width="12%">REKANAN</th>
 				<th align="center" width="30%" rowspan="2">&nbsp; <br />NO. PESANAN PEMBELIAN</th>
 				<th align="center" width="17%" rowspan="2">&nbsp; <br />KETERANGAN</th>
-				<th align="center" width="12%" rowspan="2">&nbsp; <br />TAGIHAN</th>
+				<th align="center" width="12%" rowspan="2">&nbsp; <br />PENERIMAAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />HUTANG</th>
             </tr>
@@ -194,15 +194,15 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Gervasius K. Limahekin</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Debi Khania</u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Debi Khania</u><br />
 								Kasir</b>
 							</td>
 						</tr>
