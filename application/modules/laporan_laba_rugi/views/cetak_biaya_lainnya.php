@@ -90,7 +90,6 @@
 			$grand_total_biaya_lainnya = $total_biaya_lainnya;
 			if(!empty($biaya_lainnya_jurnal)){
 				foreach ($biaya_lainnya_jurnal as $key => $row2) {
-					$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
 					?>
 					<tr>
 						<td><?= $row2['tanggal_transaksi'];?></td>
@@ -105,7 +104,7 @@
 			$total_c = $grand_total_biaya_lainnya + $total_biaya_lainnya_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Lain - Lain</td>
+				<td width="80%" style="padding-left:20px;"><b>Total Biaya Lain - Lain</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
 			</tr>
 		</table>
@@ -140,15 +139,15 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Hadi Sucipto</u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Rifka Dian B.</u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u>Dian Melinda S.</u><br />
 								Staff Keuangan & SDM</b>
 							</td>
 						</tr>
