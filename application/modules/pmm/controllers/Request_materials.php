@@ -51,7 +51,6 @@ class Request_materials extends CI_Controller {
 
 		$this->db->select('prm.*, ps.schedule_name,ps.no_spo');
 		$this->db->join('pmm_schedule ps','prm.schedule_id = ps.id','left');
-		$this->db->where('prm.status !=','DELETED');
 		if(!empty($schedule_id)){
 			$this->db->where('prm.schedule_id',$schedule_id);
 		}
@@ -66,7 +65,6 @@ class Request_materials extends CI_Controller {
 			$this->db->where('request_date <=',date('Y-m-d',strtotime($end_date)));	
 		}
 
-		//$this->db->where('ps.status !=','DELETED');
 		$this->db->order_by('request_date','DESC');
 		$this->db->order_by('created_on','DESC');
 		$query = $this->db->get('pmm_request_materials prm');
@@ -92,8 +90,12 @@ class Request_materials extends CI_Controller {
 					$edit = false;
 				}
 				$row['status'] = $this->pmm_model->GetStatus($row['status']);
+				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' ';
 
-				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' '.$delete;
+				$row['delete'] = '-';
+				if(in_array($this->session->userdata('admin_group_id'), array(1))){
+				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';
+				}
 				$data[] = $row;
 			}
 
@@ -195,18 +197,14 @@ class Request_materials extends CI_Controller {
 		echo json_encode($output);
 	}
 
-
 	public function delete()
 	{
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-			$data = array(
-				'status' => 'DELETED',
-				'updated_by' => $this->session->userdata('admin_id'),
-				'updated_on' => date('Y-m-d H:i:s'),
-			);
-			if($this->db->update('pmm_request_materials',$data,array('id'=>$id))){
+			$this->db->delete('pmm_request_material_details', array('request_material_id' => $id));
+			$this->db->delete('pmm_request_materials', array('id' => $id));
+			{
 				$output['output'] = true;
 			}
 		}
